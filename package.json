@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --mode development --env development",
-    "build": "webpack --env production"
+    "build": "cross-env NODE_ENV=production webpack --env production"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -17,6 +17,7 @@
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
     "awesome-typescript-loader": "^5.2.1",
+    "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
     "postcss": "^8.1.7",
