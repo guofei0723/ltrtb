@@ -8,7 +8,11 @@ Webpack5 + typescript + react + tailwind
 
 ```bash
 # 克隆项目到本地
-git clone --depth=1 git@github.com:guofei0723/ltrtb.git
+git clone --depth=1 git@github.com:guofei0723/ltrtb.git yourproject
+
+cd yourproject
+# 安装依赖
+yarn
 
 # 删除与本仓库的关系
 git remote rm origin

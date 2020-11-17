@@ -1,18 +1,28 @@
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
-module.exports = env => {
+module.exports = (env={}) => {
   return {
     entry: {
       app: ['./src/index.tsx'],
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: env.production ? 'js/[hash].js' : 'js/[name].bundle.js',
+      filename: env.production ? 'js/[fullhash].js' : 'js/[name].bundle.js',
       // 静态资源文件
-      assetModuleFilename: 'static/[hash][ext][query]'
+      assetModuleFilename: 'static/[contenthash][ext][query]',
+      // 公网路径
+      // publicPath: '',
     },
     devtool: 'source-map',
+    devServer: {
+      host: '0.0.0.0',
+      contentBase: './dist',
+      open: true,
+      hot: true,
+    },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       alias: {
@@ -48,9 +58,18 @@ module.exports = env => {
     },
 
     plugins: [
+      new CleanWebpackPlugin({
+        cleanStaleWebpackAssets: false,
+      }),
+      new CopyPlugin({
+        patterns: [
+          'public',
+        ]
+      }),
       new HtmlWebPackPlugin({
-        template: './src/index.html'
+        template: 'src/index.html',
+        chunks: ['app'],
       })
     ]
   }
-};
+}
