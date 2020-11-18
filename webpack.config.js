@@ -6,11 +6,17 @@ const CopyPlugin = require('copy-webpack-plugin')
 module.exports = (env={}) => {
   return {
     entry: {
-      app: ['./src/index.tsx'],
+      // 后台
+      background: ['./src/background/index.ts'],
+      // 页面action
+      popup: ['./src/popup/index.ts'],
+      // 选项页面
+      options: ['./src/options/index.tsx'],
+
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: env.production ? 'js/[fullhash].js' : 'js/[name].bundle.js',
+      filename: 'js/[name].js',
       // 静态资源文件
       assetModuleFilename: 'static/[contenthash][ext][query]',
       // 公网路径
@@ -66,10 +72,19 @@ module.exports = (env={}) => {
           'public',
         ]
       }),
+      // popup html
       new HtmlWebPackPlugin({
         template: 'src/index.html',
-        chunks: ['app'],
-      })
+        filename: 'popup.html',
+        chunks: ['popup'],
+      }),
+      // options html
+      new HtmlWebPackPlugin({
+        template: 'src/index.html',
+        title: 'Options',
+        filename: 'options.html',
+        chunks: ['options'],
+      }),
     ]
   }
 }
