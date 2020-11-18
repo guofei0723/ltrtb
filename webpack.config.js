@@ -63,6 +63,13 @@ module.exports = (env={}) => {
       ]
     },
 
+    optimization: {
+      splitChunks: {
+        // include all types of chunks
+        chunks: 'all',
+      }
+    },
+
     plugins: [
       new CleanWebpackPlugin({
         cleanStaleWebpackAssets: false,
