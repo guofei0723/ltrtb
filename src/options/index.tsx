@@ -1,9 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import '@/index.css'
+import { runApp } from '@/utils'
 import Options from './Options'
 
-ReactDOM.render(
-  <Options />,
-  document.getElementById('app')
-)
+runApp(Options)
