@@ -1,0 +1,22 @@
+{
+  "name": "My Chrome Extension",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "permissions": ["storage", "activeTab"],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "options_page": "options.html",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/color-wheel.png"
+  },
+  "icons": {
+    "16": "icons/color-wheel.png",
+    "32": "icons/color-wheel.png",
+    "48": "icons/color-wheel.png",
+    "128": "icons/color-wheel.png"
+  },
+  "manifest_version": 2
+}
