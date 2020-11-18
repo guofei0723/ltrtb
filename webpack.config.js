@@ -74,13 +74,11 @@ module.exports = (env={}) => {
       }),
       // popup html
       new HtmlWebPackPlugin({
-        template: 'src/index.html',
         filename: 'popup.html',
         chunks: ['popup'],
       }),
       // options html
       new HtmlWebPackPlugin({
-        template: 'src/index.html',
         title: 'Options',
         filename: 'options.html',
         chunks: ['options'],
